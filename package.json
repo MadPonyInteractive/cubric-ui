@@ -1,0 +1,71 @@
+{
+  "name": "@cubric/ui",
+  "version": "0.1.0",
+  "description": "Shared component foundation for the Cubric family — vanilla TypeScript OOP components, tier-enforced, accent-themeable.",
+  "license": "MIT",
+  "author": "Mad Pony Interactive",
+  "homepage": "https://github.com/MadPonyInteractive/cubric-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadPonyInteractive/cubric-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MadPonyInteractive/cubric-ui/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": {
+      "default": "./dist/styles/index.css"
+    },
+    "./eslint": {
+      "default": "./dist/eslint/tier-boundaries.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "cubric",
+    "ui",
+    "components",
+    "typescript",
+    "design-system"
+  ],
+  "scripts": {
+    "build": "vite build && node scripts/copy-styles.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev:gallery": "vite --config vite.gallery.config.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "eslint": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-plugin-boundaries": "^6.0.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^7.0.0",
+    "vite-plugin-dts": "^4.0.0",
+    "vitest": "^2.0.0"
+  }
+}

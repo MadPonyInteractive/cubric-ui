@@ -1,0 +1,83 @@
+/*
+ * @cubric/ui — Stage design tokens (the shared visual contract).
+ *
+ * Founding CSS rule — minimize overrides: components style only what they own;
+ * bare variants via BEM modifier (.mpi-block__element--modifier); NEVER
+ * !important; tokens only (no hardcoded hex/OKLCH in components); hover via
+ * color-mix(in oklch, var(--accent-heat) N%, ...).
+ *
+ * PER-APP OVERRIDE: the ONLY token an app is expected to override is
+ * --accent-heat. Set it once in your app's own stylesheet, loaded AFTER this
+ * file, e.g.:
+ *
+ *   :root { --accent-heat: oklch(0.88 0.13 102); }   // Cubric Prompt — yellow
+ *
+ * The default below is the Cubric family yellow; every other token is shared
+ * verbatim across all apps for pixel parity.
+ */
+
+:root {
+  /* Surfaces — chrome warmer than canvas; canvas is the deep stage */
+  --surface-0:       oklch(0.50 0.022 350);  /* outermost chrome */
+  --surface-1:       oklch(0.46 0.022 350);  /* panels */
+  --surface-2:       oklch(0.42 0.022 350);  /* raised, inputs */
+  --surface-3:       oklch(0.55 0.024 350);  /* hover */
+  --surface-bar:     oklch(0.34 0.022 350);  /* status, quiet zones */
+  --surface-canvas:  oklch(0.28 0.020 350);  /* editor canvas, vignette base */
+
+  /* Ink — warm whites */
+  --ink-1:           oklch(0.98 0.008 80);   /* primary text */
+  --ink-2:           oklch(0.85 0.012 80);   /* secondary */
+  --ink-3:           oklch(0.66 0.014 80);   /* labels, kickers */
+  --ink-4:           oklch(0.50 0.018 80);   /* muted, almost-disappearing */
+
+  /* Lines — translucent so they sit ON the surface */
+  --line:            oklch(0.72 0.018 350 / 0.16);
+  --line-soft:       oklch(0.72 0.015 350 / 0.08);
+
+  /* Accents — override --accent-heat per app; the rest are shared */
+  --accent-heat:     oklch(0.88 0.13 102);   /* PER-APP OVERRIDE — default: Cubric family yellow */
+  --accent-frost:    oklch(0.82 0.13 220);   /* cyan — generative state, focus rings, frost lines */
+  --accent-ok:       oklch(0.78 0.13 150);   /* success, ready */
+  --accent-warn:     oklch(0.78 0.14 60);    /* warning */
+
+  /* Type scale */
+  --t-2xs:     10px;
+  --t-xs:      11px;
+  --t-sm:      13px;
+  --t-md:      15px;
+  --t-lg:      19px;
+  --t-xl:      32px;
+  --t-2xl:     64px;
+  --t-3xl:     96px;
+  --t-display: 144px;
+
+  /* Spacing */
+  --s-1:   4px;
+  --s-2:   8px;
+  --s-3:   14px;
+  --s-4:   22px;
+  --s-5:   32px;
+  --s-6:   48px;
+  --s-7:   72px;
+  --s-8:   112px;
+
+  /* Radius */
+  --r-1:    0px;     /* sharp — Stage prefers angular over rounded */
+  --r-2:    4px;     /* small affordances */
+  --r-3:    12px;    /* large containers when softness is needed */
+  --r-pill: 999px;   /* status pills, accent dots */
+
+  /* Motion — cinematic, exponential ease-out */
+  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 200ms;
+  --t-base: 280ms;
+  --t-slow: 480ms;
+
+  /* Fonts */
+  --font-wordmark: 'Russo One', 'JetBrains Mono', sans-serif;
+
+  /* Shell */
+  --titlebar-h:  32px;
+  --statusbar-h: 32px;
+}

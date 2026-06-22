@@ -1,0 +1,28 @@
+/* ── @cubric/ui fonts — bundled with the package so every Cubric app shares the
+ * exact typefaces (JetBrains Mono for UI, Russo One for the wordmark). Paths are
+ * relative to this CSS file; the build copies the woff2 files into dist/styles/.
+ */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('./fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('./fonts/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Russo One';
+  src: url('./fonts/RussoOne-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

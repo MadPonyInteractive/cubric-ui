@@ -1,0 +1,7 @@
+/* @cubric/ui — the full Stage CSS contract. Import once in your app entry:
+ *   import '@cubric/ui/styles';
+ * then override --accent-heat in your own stylesheet (loaded after this).
+ */
+@import './fonts.css';
+@import './tokens.css';
+@import './base.css';

@@ -1,0 +1,4 @@
+# Normalize line endings — LF in the repo, woff2 binary. Keeps diffs clean
+# across Windows/macOS/Linux contributors.
+* text=auto eol=lf
+*.woff2 binary
