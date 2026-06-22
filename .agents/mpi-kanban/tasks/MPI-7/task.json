@@ -1,0 +1,14 @@
+{
+  "schema": "mpi-kanban/task-card/v1",
+  "id": "MPI-7",
+  "title": "Build overlay / hotkey harness (new)",
+  "description": "NEW BUILD (no keydown/Escape harness exists in Prompt yet). Build directly in @cubric/ui (src/<overlay-hotkey module>): Escape closes an open overlay; a registered hotkey fires its handler; teardown via track(). Underpins ContextMenu/Popup dismissal and future shortcuts. Gallery: Escape closes an open overlay; a registered hotkey fires. Spec: Cubric-Prompt MPI-9 plan `## Parallel Batch` + MPI-7 brief. Briefings: components rule.",
+  "column": "todo",
+  "maturity": "idea",
+  "status": "active",
+  "created_at": "2026-06-22T18:30:00Z",
+  "updated_at": "2026-06-22T18:30:00Z",
+  "links": {
+    "events": "events.jsonl"
+  }
+}

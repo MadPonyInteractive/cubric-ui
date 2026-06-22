@@ -1,0 +1,1 @@
+{"schema":"mpi-kanban/event/v1","id":"MPI-4","type":"task.created","at":"2026-06-22T18:30:00Z","actor":"claude","summary":"Migrate Gauge + StatusDot. Seeded at @cubric/ui MPI init; spec lives in Cubric-Prompt MPI-9 plan Parallel Batch."}

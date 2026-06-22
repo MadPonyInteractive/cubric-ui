@@ -1,0 +1,14 @@
+{
+  "schema": "mpi-kanban/task-card/v1",
+  "id": "MPI-4",
+  "title": "Migrate Gauge + StatusDot (primitives)",
+  "description": "Lift Gauge + StatusDot into @cubric/ui src/primitives/. CLEAN lift; StatusBar building blocks (prereq for MPI-5). Add both (with variants) to the MPI-8 gallery. Cubric-Prompt swaps, builds green. Spec: Cubric-Prompt MPI-9 plan `## Parallel Batch`. Briefings: components rule.",
+  "column": "todo",
+  "maturity": "idea",
+  "status": "active",
+  "created_at": "2026-06-22T18:30:00Z",
+  "updated_at": "2026-06-22T18:30:00Z",
+  "links": {
+    "events": "events.jsonl"
+  }
+}

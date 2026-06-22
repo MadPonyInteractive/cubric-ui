@@ -1,0 +1,14 @@
+{
+  "schema": "mpi-kanban/task-card/v1",
+  "id": "MPI-8",
+  "title": "Gallery showcase — every component on one page (START HERE)",
+  "description": "FIRST ORDER OF BUSINESS in this repo. Grow the gallery (gallery/main.ts, run via `npm run dev:gallery`) into a living showcase that mounts ONE of every component the package ships, with the accent switcher proving cross-app parity. Today it shows Button only. Each component-migration card (MPI-1..MPI-7) MUST add its component to this gallery as part of its Verify step — so the gallery is the standing visual-QA surface and the contract every migration extends. This card seeds the structure (sections per tier, the accent switcher already exists) and keeps it the canonical demo page. Also the place to settle the open 'canonical Button shape' question (Prompt's vs Vision's richer intelligent-primitive) visually, per Cubric-Prompt MPI-9 plan Preservation Notes.",
+  "column": "todo",
+  "maturity": "idea",
+  "status": "active",
+  "created_at": "2026-06-22T18:30:00Z",
+  "updated_at": "2026-06-22T18:30:00Z",
+  "links": {
+    "events": "events.jsonl"
+  }
+}

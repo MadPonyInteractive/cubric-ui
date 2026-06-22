@@ -1,0 +1,14 @@
+{
+  "schema": "mpi-kanban/task-card/v1",
+  "id": "MPI-5",
+  "title": "Migrate StatusBar (StatusFooter) + hover→data-info",
+  "description": "Lift StatusFooter into @cubric/ui src/compounds/ (hardcoded 'Engine' label → prop) PLUS build the hover→data-info delegation harness (delegated mouseover + MutationObserver, per Cubric-Prompt MPI-7 brief — that brief is the spec). Depends on MPI-4 (Gauge+StatusDot) shipped first. Gallery: bar with live-settable gauges + a hovered [data-info] element writing its text into the bar. Verify mode: user-ux (Fabio feels the hover). Spec: Cubric-Prompt MPI-9 plan `## Parallel Batch` + MPI-7 brief. Briefings: components rule.",
+  "column": "todo",
+  "maturity": "idea",
+  "status": "active",
+  "created_at": "2026-06-22T18:30:00Z",
+  "updated_at": "2026-06-22T18:30:00Z",
+  "links": {
+    "events": "events.jsonl"
+  }
+}

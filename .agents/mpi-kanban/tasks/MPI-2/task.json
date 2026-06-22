@@ -1,0 +1,14 @@
+{
+  "schema": "mpi-kanban/task-card/v1",
+  "id": "MPI-2",
+  "title": "Migrate ContextMenu (compound)",
+  "description": "Lift ContextMenu into @cubric/ui src/compounds/. CLEAN lift (generic label/value + onSelect, outside-click dismiss). Add to the MPI-8 gallery (right-click menu with outside-click dismiss). Cubric-Prompt swaps, builds green. Spec: Cubric-Prompt MPI-9 plan `## Parallel Batch`. Briefings: components rule.",
+  "column": "todo",
+  "maturity": "idea",
+  "status": "active",
+  "created_at": "2026-06-22T18:30:00Z",
+  "updated_at": "2026-06-22T18:30:00Z",
+  "links": {
+    "events": "events.jsonl"
+  }
+}
