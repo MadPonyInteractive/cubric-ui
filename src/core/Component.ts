@@ -18,6 +18,20 @@
 
 export type Cleanup = () => void;
 
+/**
+ * The minimal lifecycle a mountChild() child must satisfy. Structural, NOT
+ * nominal: a child only needs to mount and tear down. This is deliberate — a
+ * consumer app that has its OWN copy of Component (e.g. Vision's future TS
+ * core, or any app not yet migrated to @cubric/ui's core) must still be able to
+ * mountChild() a @cubric/ui component, and vice versa. Requiring `child` to be
+ * nominally `Component<P>` would couple the two classes through TS's nominal
+ * `protected` checks and make cross-package mounting fail to compile.
+ */
+export interface Mountable {
+  mount(parent: HTMLElement): unknown;
+  destroy(): void;
+}
+
 export abstract class Component<TProps = void> {
   /** The root element, available after mount(). */
   protected el!: HTMLElement;
@@ -25,7 +39,7 @@ export abstract class Component<TProps = void> {
   protected readonly props: TProps;
 
   private readonly cleanups: Cleanup[] = [];
-  private readonly children: Component<unknown>[] = [];
+  private readonly children: Mountable[] = [];
   private mounted = false;
   private destroyed = false;
 
@@ -74,13 +88,14 @@ export abstract class Component<TProps = void> {
     this.cleanups.push(cleanup);
   }
 
-  /** Mount a child and tie its lifetime to this component's. */
-  protected mountChild<C extends Component<P>, P>(
-    child: C,
-    parent: HTMLElement = this.el,
-  ): C {
+  /**
+   * Mount a child and tie its lifetime to this component's. Accepts any
+   * Mountable (structural), so a consumer can mount a @cubric/ui component even
+   * when its own enclosing component extends a DIFFERENT copy of Component.
+   */
+  protected mountChild<C extends Mountable>(child: C, parent: HTMLElement = this.el): C {
     child.mount(parent);
-    this.children.push(child as Component<unknown>);
+    this.children.push(child);
     return child;
   }
 

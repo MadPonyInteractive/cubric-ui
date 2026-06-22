@@ -50,6 +50,12 @@ export function createTierBoundariesConfig(options = {}) {
     },
     tsconfigPath = './tsconfig.json',
     include = 'src/**/*',
+    // The leak guard (discarded `.on()`) only matters where the Component
+    // `track()` discipline applies — i.e. inside the component tree. Scoping it
+    // to `${componentBase}` keeps it off a consumer's main-process / non-UI code
+    // (e.g. Electron `app.on(...)` lifecycle listeners that legitimately live
+    // forever). Override if your components live elsewhere.
+    leakGuardFiles = [`${componentBase}/**/*.ts`],
   } = options;
 
   if (!boundaries) {
@@ -122,9 +128,11 @@ export function createTierBoundariesConfig(options = {}) {
     {
       // The leak guard: a discarded EventBus.on()/DOM-subscription return is the
       // #1 leak source. Flag any bare `.on(...)` expression statement whose result
-      // is dropped — pass it to track() or assign it.
-      files: ['src/**/*.ts'],
-      ignores: ['src/**/*.test.ts'],
+      // is dropped — pass it to track() or assign it. Scoped to the component
+      // tree (see leakGuardFiles) so it never trips a consumer's main-process or
+      // non-UI `.on(...)` calls.
+      files: leakGuardFiles,
+      ignores: ['**/*.test.ts'],
       rules: {
         'no-restricted-syntax': [
           'error',

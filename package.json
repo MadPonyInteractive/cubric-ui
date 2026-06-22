@@ -1,6 +1,6 @@
 {
   "name": "@cubric/ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared component foundation for the Cubric family — vanilla TypeScript OOP components, tier-enforced, accent-themeable.",
   "license": "MIT",
   "author": "Mad Pony Interactive",

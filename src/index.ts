@@ -8,7 +8,7 @@
 
 // Core — the architecture
 export { Component } from './core/Component.js';
-export type { Cleanup } from './core/Component.js';
+export type { Cleanup, Mountable } from './core/Component.js';
 export type { Command } from './core/Command.js';
 export { CommandBus } from './core/CommandBus.js';
 
