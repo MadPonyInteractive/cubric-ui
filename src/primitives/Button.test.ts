@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Button } from './Button.js';
 
 describe('Button', () => {
@@ -43,5 +43,74 @@ describe('Button', () => {
     expect(container.querySelector('button')).not.toBeNull();
     btn.destroy();
     expect(container.querySelector('button')).toBeNull();
+  });
+
+  // --- icon mode ---
+
+  it('icon mode renders an svg and marks icon-only without a label', () => {
+    new Button({ icon: 'settings' }).mount(container);
+    const el = container.querySelector('button') as HTMLElement;
+    expect(el.classList.contains('mpi-btn--icon')).toBe(true);
+    expect(el.classList.contains('mpi-btn--icon-only')).toBe(true);
+    expect(el.querySelector('.mpi-btn__icon svg')).not.toBeNull();
+  });
+
+  it('icon + label renders both and applies the labelPosition class', () => {
+    new Button({ icon: 'download', label: 'Save', labelPosition: 'left' }).mount(container);
+    const el = container.querySelector('button') as HTMLElement;
+    expect(el.classList.contains('mpi-btn--label-left')).toBe(true);
+    expect(el.querySelector('.mpi-btn__icon svg')).not.toBeNull();
+    expect(el.querySelector('.mpi-btn__text')?.textContent).toBe('Save');
+  });
+
+  // --- toggle + events ---
+
+  it('toggleable click flips is-active and fires onToggle + onClick', () => {
+    const onToggle = vi.fn();
+    const onClick = vi.fn();
+    const btn = new Button({ icon: 'eye', toggleable: true, onToggle, onClick });
+    btn.mount(container);
+    const el = container.querySelector('button') as HTMLButtonElement;
+
+    el.click();
+    expect(el.classList.contains('is-active')).toBe(true);
+    expect(onToggle).toHaveBeenLastCalledWith(true);
+    expect(onClick).toHaveBeenLastCalledWith(expect.anything(), true);
+    expect(btn.active).toBe(true);
+
+    el.click();
+    expect(el.classList.contains('is-active')).toBe(false);
+    expect(onToggle).toHaveBeenLastCalledWith(false);
+  });
+
+  it('does not fire handlers or toggle when disabled', () => {
+    const onClick = vi.fn();
+    const btn = new Button({ toggleable: true, disabled: true, onClick });
+    btn.mount(container);
+    (container.querySelector('button') as HTMLButtonElement).click();
+    expect(onClick).not.toHaveBeenCalled();
+    expect(btn.active).toBe(false);
+  });
+
+  it('sets data-info from the info prop', () => {
+    new Button({ text: 'Enhance', info: 'Rewrite your prompt' }).mount(container);
+    expect(container.querySelector('button')?.getAttribute('data-info')).toBe('Rewrite your prompt');
+  });
+
+  it('setActive swaps to iconActive', () => {
+    const btn = new Button({ icon: 'play', iconActive: 'pause' });
+    btn.mount(container);
+    const iconHtmlBefore = (container.querySelector('.mpi-btn__icon') as HTMLElement).innerHTML;
+    btn.setActive(true);
+    const iconHtmlAfter = (container.querySelector('.mpi-btn__icon') as HTMLElement).innerHTML;
+    expect(iconHtmlAfter).not.toBe(iconHtmlBefore);
+    expect(container.querySelector('button')?.classList.contains('is-active')).toBe(true);
+  });
+
+  it('setText updates the label node', () => {
+    const btn = new Button({ text: 'Old' });
+    btn.mount(container);
+    btn.setText('New');
+    expect(container.querySelector('.mpi-btn__text')?.textContent).toBe('New');
   });
 });
